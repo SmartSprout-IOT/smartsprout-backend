@@ -1,4 +1,4 @@
-package com.upc.smartsproutbackend.service.impl;
+package com.upc.smartsproutbackend.service;
 
 import com.upc.smartsproutbackend.models.User;
 
