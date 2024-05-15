@@ -1,5 +1,7 @@
 package com.upc.smartsproutbackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +30,7 @@ public class CropField {
     @Column(name = "location", nullable = false, length = 50)
     private String location;
     @Column(name = "size", nullable = false, length = 50)
-    private String size;
+    private double size;
     @Column(name = "soil_type", nullable = false, length = 50)
     private String soilType;
     @Column(name = "crop_type", nullable = false, length = 50)
@@ -51,7 +53,16 @@ public class CropField {
     private LocalTime irrigationEndTime;
     @Column(name = "irrigation_completed", nullable = false)
     private boolean irrigationCompleted;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cropField", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IrrigationRecord> irrigationRecords;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false,
+            foreignKey = @ForeignKey(name = "FK_USER_CROP_FIELD_ID"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private User user;
 
 }
