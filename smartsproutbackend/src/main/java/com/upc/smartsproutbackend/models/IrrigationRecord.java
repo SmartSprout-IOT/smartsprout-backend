@@ -1,4 +1,5 @@
 package com.upc.smartsproutbackend.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,7 @@ public class IrrigationRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "crop_field_id", nullable = false)
     private CropField cropField;
@@ -26,7 +28,7 @@ public class IrrigationRecord {
     private LocalDate irrigationDate;
 
     @Column(name = "duration", nullable = false)
-    private int duration;
+    private Long duration;
 
     @Column(name = "start_time", nullable = false)
     private LocalTime startTime;

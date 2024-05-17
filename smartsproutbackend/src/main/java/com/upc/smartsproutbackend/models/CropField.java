@@ -45,13 +45,14 @@ public class CropField {
     private String ideal_temperature;
     @Column(name = "ideal_humidity", nullable = false, length = 50)
     private String ideal_humidity;
-    @Column(name = "irrigation_duration", nullable = false, length = 50)
-    private int irrigationDuration;
-    @Column(name = "irrigation_starttime", nullable = false, length = 50)
+
+    @Column(name = "irrigation_duration")
+    private Long irrigationDuration;
+    @Column(name = "irrigation_starttime")
     private LocalTime irrigationStartTime;
-    @Column(name = "irrigation_endtime", nullable = false, length = 50)
+    @Column(name = "irrigation_endtime")
     private LocalTime irrigationEndTime;
-    @Column(name = "irrigation_completed", nullable = false)
+    @Column(name = "irrigation_completed")
     private boolean irrigationCompleted;
 
     @JsonIgnore
