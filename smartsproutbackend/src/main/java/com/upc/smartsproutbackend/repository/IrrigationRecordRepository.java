@@ -10,5 +10,4 @@ import java.util.List;
 public interface IrrigationRecordRepository extends JpaRepository<IrrigationRecord, Long> {
     List<IrrigationRecord> findByCropFieldId(Long cropFieldId);
     List<IrrigationRecord> findByIrrigationDateBetween(LocalDate startDate, LocalDate endDate);
-    // Otros métodos según los requisitos de tu aplicación
 }

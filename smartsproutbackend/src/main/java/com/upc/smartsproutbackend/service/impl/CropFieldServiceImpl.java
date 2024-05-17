@@ -94,26 +94,26 @@ public class CropFieldServiceImpl implements CropFieldService {
 
     private void existsCropFieldByCropFieldId(Long cropFieldId) {
         if (!cropFieldRepository.existsById(cropFieldId)) {
-            throw new RuntimeException("CropField not found");
+            throw new ResourceNotFoundException("CropField not found");
         }
     }
 
     private void existsUserByUserId(Long userId) {
         User user = userService.getUserById(userId);
         if (user == null) {
-            throw new RuntimeException("No existe el usuario con el id: " + userId);
+            throw new ResourceNotFoundException("No existe el usuario con el id: " + userId);
         }
     }
 
     private void validateCropField(CropField cropField) {
         if (cropField.getName() == null || cropField.getName().isEmpty()) {
-            throw new RuntimeException("El nombre del campo no puede estar vacío");
+            throw new ResourceNotFoundException("El nombre del campo no puede estar vacío");
         }
         if (cropField.getCropPlant() == null || cropField.getCropPlant().isEmpty()) {
-            throw new RuntimeException("El cultivo no puede estar vacío");
+            throw new ResourceNotFoundException("El cultivo no puede estar vacío");
         }
         if (cropField.getSoilType() == null || cropField.getSoilType().isEmpty()) {
-            throw new RuntimeException("El tipo de suelo no puede estar vacío");
+            throw new ResourceNotFoundException("El tipo de suelo no puede estar vacío");
         }
 
 
