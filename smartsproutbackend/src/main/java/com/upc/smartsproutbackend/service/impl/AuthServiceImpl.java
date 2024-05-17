@@ -26,8 +26,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserRepository userRepository;
@@ -57,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
         return AuthenticationResponse.builder()
                 .user_id(user.getId())
                 .accessToken(jwtToken)
+                .refreshToken(refreshToken)
                 .build();
     }
 

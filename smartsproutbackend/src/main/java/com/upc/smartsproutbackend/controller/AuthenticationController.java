@@ -9,10 +9,10 @@ import com.upc.smartsproutbackend.service.AuthService;
 import com.upc.smartsproutbackend.service.CropFieldService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class AuthenticationController {
 
     // URL: http://localhost:8080/api/smartsprout/v1/auth/login
     // Method: POST
-    @Transactional
+    @Transactional(readOnly = true)
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
         AuthenticationResponse loggedUser = authService.login(request);
@@ -56,7 +56,7 @@ public class AuthenticationController {
         authService.refreshToken(request, response);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @GetMapping("/cropfield")
     public ResponseEntity<List<CropField>> getAllCropFields() {
         List<CropField> cropFields = cropFieldService.getAllCropFields();

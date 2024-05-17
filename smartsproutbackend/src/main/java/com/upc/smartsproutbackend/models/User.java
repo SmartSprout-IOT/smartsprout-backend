@@ -16,8 +16,8 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -37,10 +37,7 @@ public class User implements UserDetails {
     @Column(name = "user_birth_date", nullable = false)
     private LocalDate userBirthDate;
 
-    @Column(name = "user_type", nullable = false, length = 50)
-    private UserType userType;
-
-    @Column(name = "user_password", nullable = false, length = 50)
+    @Column(name = "user_password", nullable = false, length = 100)
     private String userPassword;
 
     @Column(name = "user_phone", nullable = false, length = 50)
@@ -63,10 +60,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-    private enum UserType {
-        AGRICULTOR,
-        EMPRESA
     }
 
     @Override
