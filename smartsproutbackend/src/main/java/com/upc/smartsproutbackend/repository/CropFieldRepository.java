@@ -7,6 +7,6 @@ import java.util.List;
 
 
 public interface CropFieldRepository extends JpaRepository<CropField, Long> {
-    CropField findByLocation(String location);
     List<CropField> findByCropType(String cropType);
+    List<CropField> findByUserId(Long userId);
 }

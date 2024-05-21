@@ -27,8 +27,10 @@ public class CropField {
     private String name;
     @Column(name = "description", nullable = false, length = 50)
     private String description;
-    @Column(name = "location", nullable = false, length = 50)
-    private String location;
+    @Column(name = "latitude_data", nullable = false, length = 50)
+    private double latitudeData;
+    @Column(name = "longitude_data", nullable = false, length = 50)
+    private double longitudeData;
     @Column(name = "size", nullable = false, length = 50)
     private double size;
     @Column(name = "soil_type", nullable = false, length = 50)
@@ -41,10 +43,17 @@ public class CropField {
     private String cropPlant;
     @Column(name = "planting_date", nullable = false, length = 50)
     private LocalDate plantingDate;
-    @Column(name = "ideal_temperature", nullable = false, length = 50)
-    private String ideal_temperature;
-    @Column(name = "ideal_humidity", nullable = false, length = 50)
-    private String ideal_humidity;
+    @Column(name = "num_plants", nullable = false)
+    private Long numPlants;
+    @Column(name = "min_temperature", nullable = false)
+    private int minTemperature;
+    @Column(name = "max_temperature", nullable = false)
+    private int maxTemperature;
+    @Column(name = "min_humidity", nullable = false)
+    private int minHumidity;
+    @Column(name = "max_humidity", nullable = false)
+    private int maxHumidity;
+
 
     @Column(name = "irrigation_duration")
     private Long irrigationDuration;

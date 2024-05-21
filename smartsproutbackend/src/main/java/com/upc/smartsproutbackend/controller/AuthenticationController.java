@@ -57,9 +57,9 @@ public class AuthenticationController {
     }
 
     @Transactional(readOnly = true)
-    @GetMapping("/cropfield")
-    public ResponseEntity<List<CropField>> getAllCropFields() {
-        List<CropField> cropFields = cropFieldService.getAllCropFields();
+    @GetMapping("/cropfield/{userId}")
+    public ResponseEntity<List<CropField>> getCropFieldsByUserId(@PathVariable(name = "userId") Long userId) {
+        List<CropField> cropFields = cropFieldService.getCropFieldsByUserId(userId);
         return new ResponseEntity<List<CropField>>(cropFields, HttpStatus.OK);
     }
 }

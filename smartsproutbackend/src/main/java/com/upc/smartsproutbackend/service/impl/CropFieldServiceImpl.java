@@ -45,11 +45,13 @@ public class CropFieldServiceImpl implements CropFieldService {
     }
 
     @Override
-    public CropField updateCropField(CropField cropField) {
+    public CropField updateCropField(Long userId, CropField cropField) {
         existsCropFieldByCropFieldId(cropField.getId());
+        cropField.setUser(userService.getUserById(userId));
         validateCropField(cropField);
         return cropFieldRepository.save(cropField);
     }
+
 
     @Override
     public CropField startIrrigation(Long cropFieldId) {
@@ -88,9 +90,11 @@ public class CropFieldServiceImpl implements CropFieldService {
     }
 
     @Override
-    public List<CropField> getAllCropFields() {
-        return cropFieldRepository.findAll();
+    public List<CropField> getCropFieldsByUserId(Long userId) {
+        existsUserByUserId(userId);
+        return cropFieldRepository.findByUserId(userId);
     }
+
 
     private void existsCropFieldByCropFieldId(Long cropFieldId) {
         if (!cropFieldRepository.existsById(cropFieldId)) {
