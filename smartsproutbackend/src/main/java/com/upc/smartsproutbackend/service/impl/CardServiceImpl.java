@@ -41,7 +41,7 @@ public class CardServiceImpl implements CardService {
 
     private CardDto mapToDto(Card card) {
         return CardDto.builder()
-                .id(card.getId())
+                ///.id(card.getId())
                 .cardNumber(card.getCardNumber())
                 .cardholderName(card.getCardholderName())
                 .expiryDate(card.getExpiryDate())
