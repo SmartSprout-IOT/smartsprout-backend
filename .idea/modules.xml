@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/smartsproutbackend.iml" filepath="$PROJECT_DIR$/.idea/smartsproutbackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartsproutbackend/smartsproutbackend.iml" filepath="$PROJECT_DIR$/smartsproutbackend/smartsproutbackend.iml" />
     </modules>
   </component>
 </project>
