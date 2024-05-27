@@ -59,12 +59,23 @@ public class UserController {
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
+    @Transactional
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable(name = "userId") Long userId, @RequestBody User user) {
+        existsUserByUserId(userId);
+        user.setId(userId);
+        User updatedUser = ifDifferentOrEmptyUpdate(user);
+        UserDto userDto = convertToDto(updatedUser);
+        return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+    }
+
 
     private UserDto convertToDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
-                .userFirstName(user.getUserFirstName())
+                .userName(user.getUserNames())
                 .userLastName(user.getUserLastName())
+                .userMotherLastName(user.getUserMotherLastName())
                 .userEmail(user.getUserEmail())
                 .userPhone(user.getUserPhone())
                 .userBirthDate(user.getUserBirthDate())
@@ -93,9 +104,13 @@ public class UserController {
 
     private User ifDifferentOrEmptyUpdate(User user){
         return userRepository.findById(user.getId()).map(userToUpdate -> {
-            if (user.getUserFirstName() != null && !user.getUserFirstName().isEmpty() && !user.getUserFirstName().equals(userToUpdate.getUserFirstName())) {
-                userToUpdate.setUserFirstName(user.getUserFirstName());
+            if (user.getUserNames() != null && !user.getUserNames().isEmpty() && !user.getUserNames().equals(userToUpdate.getUserNames())) {
+                userToUpdate.setUserNames(user.getUserNames());
             }
+            if (user.getUserMotherLastName() != null && !user.getUserMotherLastName().isEmpty() && !user.getUserMotherLastName().equals(userToUpdate.getUserMotherLastName())) {
+                userToUpdate.setUserMotherLastName(user.getUserMotherLastName());
+            }
+
             if (user.getUserLastName() != null && !user.getUserLastName().isEmpty() && !user.getUserLastName().equals(userToUpdate.getUserLastName())) {
                 userToUpdate.setUserLastName(user.getUserLastName());
             }

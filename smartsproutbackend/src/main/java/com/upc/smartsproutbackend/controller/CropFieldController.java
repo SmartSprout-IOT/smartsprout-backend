@@ -103,7 +103,6 @@ public class CropFieldController {
                 .maxTemperature(cropField.getMaxTemperature())
                 .minHumidity(cropField.getMinHumidity())
                 .maxHumidity(cropField.getMaxHumidity())
-                .user(cropField.getUser())
                 .irrigationRecords(cropField.getIrrigationRecords())
                 .build();
     }

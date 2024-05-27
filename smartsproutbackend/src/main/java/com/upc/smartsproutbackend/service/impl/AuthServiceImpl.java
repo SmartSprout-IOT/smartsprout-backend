@@ -41,8 +41,9 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthenticationResponse register(RegisterRequest registerRequest) {
         var user = User.builder()
-                .userFirstName(registerRequest.getUserFirstName())
+                .userNames(registerRequest.getUserName())
                 .userLastName(registerRequest.getUserLastName())
+                .userMotherLastName(registerRequest.getUserMotherLastName())
                 .userEmail(registerRequest.getUserEmail())
                 .userPassword(passwordEncoder.encode(registerRequest.getUserPassword()))
                 .userPhone(registerRequest.getUserPhone())
@@ -128,12 +129,11 @@ public class AuthServiceImpl implements AuthService {
 
     public void validateRegisterRequest(RegisterRequest registerRequest)
     {
-        if(registerRequest.getUserFirstName()==null  ||
-                registerRequest.getUserFirstName().isEmpty())
+        if(registerRequest.getUserName()==null || registerRequest.getUserName().isEmpty())
         {
             throw new ValidationException("El nombre del usuario debe ser obligatorio");
         }
-        if(registerRequest.getUserFirstName().length()>50)
+        if(registerRequest.getUserName().length()>50)
         {
             throw new ValidationException("El nombre del usuario no debe exceder los 50 caracteres");
         }

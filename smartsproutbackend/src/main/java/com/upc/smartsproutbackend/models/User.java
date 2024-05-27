@@ -25,25 +25,28 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_first_name", nullable = false, length = 50)
-    private String userFirstName;
+    @Column(name = "user_names", nullable = false, length = 50)
+    private String userNames;
 
     @Column(name = "user_last_name", nullable = false, length = 50)
     private String userLastName;
 
+    @Column(name = "user_mother_last_name", nullable = false, length = 50)
+    private String userMotherLastName;
+
     @Column(name = "user_email", nullable = false, length = 50)
     private String userEmail;
 
-    @Column(name = "user_birth_date", nullable = false)
+    @Column(name = "user_birth_date")
     private LocalDate userBirthDate;
 
     @Column(name = "user_password", nullable = false, length = 100)
     private String userPassword;
 
-    @Column(name = "user_phone", nullable = false, length = 50)
+    @Column(name = "user_phone", length = 50)
     private String userPhone;
 
-    @Column(name = "image_data", nullable = false)
+    @Column(name = "image_data")
     private String imageData;
 
     @JsonIgnore

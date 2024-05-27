@@ -33,6 +33,5 @@ public class CropFieldDto {
     private int maxTemperature;
     private int minHumidity;
     private int maxHumidity;
-    private User user;
     private List<IrrigationRecord> irrigationRecords = new ArrayList<>();
 }
