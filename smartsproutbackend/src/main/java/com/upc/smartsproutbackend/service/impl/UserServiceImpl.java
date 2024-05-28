@@ -1,5 +1,6 @@
 package com.upc.smartsproutbackend.service.impl;
 
+import com.upc.smartsproutbackend.exception.ValidationException;
 import com.upc.smartsproutbackend.models.User;
 import com.upc.smartsproutbackend.repository.UserRepository;
 import com.upc.smartsproutbackend.service.UserService;
@@ -15,6 +16,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public User createUser(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void existsUserByEmail(User user) {
+        if(userRepository.existsByUserEmail(user.getUserEmail())){
+            throw new ValidationException("Ya existe un usuario con el email " + user.getUserEmail());
+        }
     }
 
     @Override
