@@ -64,7 +64,6 @@ public class IoTSensorServiceImpl implements IoTSensorService {
         IrrigationSuggestion irrigationSuggestion = irrigationSuggestionRepository.findByCropFieldId(irrigationSuggestionDto.getCropFieldId());
         irrigationSuggestion.setActualHumidity(irrigationSuggestionDto.getActualHumidity());
         irrigationSuggestion.setActualTemperature(irrigationSuggestionDto.getActualTemperature());
-        irrigationSuggestion.setIrrigation(irrigationSuggestionDto.isIrrigation());
         irrigationSuggestionRepository.save(irrigationSuggestion);
         return IrrigationSuggestionDto.builder()
                 .cropFieldId(irrigationSuggestion.getCropField().getId())

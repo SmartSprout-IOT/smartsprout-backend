@@ -72,6 +72,8 @@ public class IrrigationServiceImpl implements IrrigationService {
                     .endTime(LocalTime.now())
                     .duration((int) cropField.getIrrigationStartTime().until(cropField.getIrrigationEndTime(), ChronoUnit.MINUTES))
                     .build();
+            cropField.setIrrigationStartTime(null);
+            cropField.setIrrigationEndTime(null);
             return irrigationRecordRepository.save(irrigationRecord);
         }
         return null;

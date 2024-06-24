@@ -98,6 +98,7 @@ public class CropFieldController {
                 .cropVariety(cropField.getCropVariety())
                 .cropPlant(cropField.getCropPlant())
                 .cropPlantingDate(cropField.getCropPlantingDate())
+                .irrigationStartTime(cropField.getIrrigationStartTime())
                 .numPlants(cropField.getNumPlants())
                 .idealTemperature(cropField.getIdealTemperature())
                 .idealHumidity(cropField.getIdealHumidity())
