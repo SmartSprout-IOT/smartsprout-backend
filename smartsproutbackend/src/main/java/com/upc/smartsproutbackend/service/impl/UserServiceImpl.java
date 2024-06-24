@@ -1,7 +1,9 @@
 package com.upc.smartsproutbackend.service.impl;
 
 import com.upc.smartsproutbackend.exception.ValidationException;
+import com.upc.smartsproutbackend.models.TempDataSensor;
 import com.upc.smartsproutbackend.models.User;
+import com.upc.smartsproutbackend.repository.TempDataSensorRepository;
 import com.upc.smartsproutbackend.repository.UserRepository;
 import com.upc.smartsproutbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TempDataSensorRepository tempDataSensorRepository;
 
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+        userRepository.save(user);
+        return user;
     }
 
     @Override

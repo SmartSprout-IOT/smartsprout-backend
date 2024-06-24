@@ -29,9 +29,7 @@ public class CropFieldDto {
     private String cropPlant;
     private LocalDate cropPlantingDate;
     private Long numPlants;
-    private int minTemperature;
-    private int maxTemperature;
-    private int minHumidity;
-    private int maxHumidity;
+    private double idealTemperature;
+    private double idealHumidity;
     private List<IrrigationRecord> irrigationRecords = new ArrayList<>();
 }

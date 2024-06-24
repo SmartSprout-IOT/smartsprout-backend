@@ -63,7 +63,6 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@PathVariable(name = "userId") Long userId, @RequestBody User user) {
         existsUserByUserId(userId);
-        userService.existsUserByEmail(user);
         user.setId(userId);
         User updatedUser = ifDifferentOrEmptyUpdate(user);
         UserDto userDto = convertToDto(updatedUser);

@@ -24,15 +24,15 @@ public class CropField {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name", nullable = false, length = 50)
-    private String name;
+    private String cropFieldName;
     @Column(name = "description", nullable = false, length = 50)
-    private String description;
+    private String cropFieldDescription;
     @Column(name = "latitude_data", nullable = false, length = 50)
     private double latitudeData;
     @Column(name = "longitude_data", nullable = false, length = 50)
     private double longitudeData;
     @Column(name = "size", nullable = false, length = 50)
-    private double size;
+    private double cropFieldSize;
     @Column(name = "soil_type", nullable = false, length = 50)
     private String soilType;
     @Column(name = "crop_type", nullable = false, length = 50)
@@ -42,17 +42,15 @@ public class CropField {
     @Column(name = "crop_plant", nullable = false, length = 50)
     private String cropPlant;
     @Column(name = "planting_date", nullable = false, length = 50)
-    private LocalDate plantingDate;
+    private LocalDate cropPlantingDate;
     @Column(name = "num_plants", nullable = false)
     private Long numPlants;
-    @Column(name = "min_temperature", nullable = false)
-    private int minTemperature;
-    @Column(name = "max_temperature", nullable = false)
-    private int maxTemperature;
-    @Column(name = "min_humidity", nullable = false)
-    private int minHumidity;
-    @Column(name = "max_humidity", nullable = false)
-    private int maxHumidity;
+    @Column(name = "ideal_temperature", nullable = false)
+    private double idealTemperature;
+    @Column(name = "ideal_humidity", nullable = false)
+    private double idealHumidity;
+    @Column(name = "irrigation", nullable = false)
+    private boolean isIrrigation;
 
 
     @Column(name = "irrigation_duration")
@@ -74,5 +72,9 @@ public class CropField {
             foreignKey = @ForeignKey(name = "FK_USER_CROP_FIELD_ID"))
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User user;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "cropField", cascade = CascadeType.ALL, orphanRemoval = true)
+    private IrrigationSuggestion irrigationSuggestion;
 
 }

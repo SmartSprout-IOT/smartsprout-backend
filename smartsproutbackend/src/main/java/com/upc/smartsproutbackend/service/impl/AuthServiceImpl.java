@@ -5,10 +5,8 @@ import com.upc.smartsproutbackend.dto.AuthenticationResponse;
 import com.upc.smartsproutbackend.dto.LoginRequest;
 import com.upc.smartsproutbackend.dto.RegisterRequest;
 import com.upc.smartsproutbackend.exception.ValidationException;
-import com.upc.smartsproutbackend.models.Roles;
-import com.upc.smartsproutbackend.models.Token;
-import com.upc.smartsproutbackend.models.TokenType;
-import com.upc.smartsproutbackend.models.User;
+import com.upc.smartsproutbackend.models.*;
+import com.upc.smartsproutbackend.repository.TempDataSensorRepository;
 import com.upc.smartsproutbackend.repository.TokenRepository;
 import com.upc.smartsproutbackend.repository.UserRepository;
 import com.upc.smartsproutbackend.service.AuthService;
@@ -33,6 +31,8 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     @Autowired
     private TokenRepository tokenRepository;
+    @Autowired
+    private TempDataSensorRepository tempDataSensorRepository;
 
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
@@ -55,6 +55,12 @@ public class AuthServiceImpl implements AuthService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+        TempDataSensor tempDataSensor = TempDataSensor.builder()
+                .userId(user.getId())
+                .cropFieldId(0L)
+                .isIrrigation(false)
+                .build();
+        tempDataSensorRepository.save(tempDataSensor);
         return AuthenticationResponse.builder()
                 .user_id(user.getId())
                 .accessToken(jwtToken)
