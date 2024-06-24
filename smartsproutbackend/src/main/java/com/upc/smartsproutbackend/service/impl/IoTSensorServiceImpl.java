@@ -2,6 +2,7 @@ package com.upc.smartsproutbackend.service.impl;
 
 import com.upc.smartsproutbackend.dto.IdealConditionsDto;
 import com.upc.smartsproutbackend.dto.IrrigationSuggestionDto;
+import com.upc.smartsproutbackend.dto.IrrigationSuggestionResponse;
 import com.upc.smartsproutbackend.dto.ManageConfigurationSensorDto;
 import com.upc.smartsproutbackend.exception.ResourceNotFoundException;
 import com.upc.smartsproutbackend.models.CropField;
@@ -67,6 +68,16 @@ public class IoTSensorServiceImpl implements IoTSensorService {
         irrigationSuggestionRepository.save(irrigationSuggestion);
         return IrrigationSuggestionDto.builder()
                 .cropFieldId(irrigationSuggestion.getCropField().getId())
+                .actualHumidity(irrigationSuggestion.getActualHumidity())
+                .actualTemperature(irrigationSuggestion.getActualTemperature())
+                .isIrrigation(irrigationSuggestion.isIrrigation())
+                .build();
+    }
+
+    @Override
+    public IrrigationSuggestionResponse getIrrigationSuggestion(Long cropFieldId) {
+        IrrigationSuggestion irrigationSuggestion = irrigationSuggestionRepository.findByCropFieldId(cropFieldId);
+        return IrrigationSuggestionResponse.builder()
                 .actualHumidity(irrigationSuggestion.getActualHumidity())
                 .actualTemperature(irrigationSuggestion.getActualTemperature())
                 .isIrrigation(irrigationSuggestion.isIrrigation())

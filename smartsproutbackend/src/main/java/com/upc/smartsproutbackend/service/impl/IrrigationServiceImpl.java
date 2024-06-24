@@ -2,6 +2,7 @@ package com.upc.smartsproutbackend.service.impl;
 
 import com.upc.smartsproutbackend.models.CropField;
 import com.upc.smartsproutbackend.models.IrrigationRecord;
+import com.upc.smartsproutbackend.models.IrrigationSuggestion;
 import com.upc.smartsproutbackend.models.TempDataSensor;
 import com.upc.smartsproutbackend.repository.CropFieldRepository;
 import com.upc.smartsproutbackend.repository.IrrigationRecordRepository;
@@ -37,6 +38,10 @@ public class IrrigationServiceImpl implements IrrigationService {
                 tempDataSensor.setIrrigation(true);
                 tempDataSensorRepository.save(tempDataSensor);
             }
+            IrrigationSuggestion irrigationSuggestion = cropField.getIrrigationSuggestion();
+            if (irrigationSuggestion != null) {
+                irrigationSuggestion.setIrrigation(true);
+            }
         }
         assert cropField != null;
         cropField.setIrrigationStartTime(LocalTime.now());
@@ -53,6 +58,11 @@ public class IrrigationServiceImpl implements IrrigationService {
                 tempDataSensor.setIrrigation(false);
                 tempDataSensorRepository.save(tempDataSensor);
             }
+            IrrigationSuggestion irrigationSuggestion = cropField.getIrrigationSuggestion();
+            if (irrigationSuggestion != null) {
+                irrigationSuggestion.setIrrigation(false);
+            }
+
             cropField.setIrrigationEndTime(LocalTime.now());
             cropFieldRepository.save(cropField);
             IrrigationRecord irrigationRecord = IrrigationRecord.builder()
