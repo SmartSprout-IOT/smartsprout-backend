@@ -32,6 +32,7 @@ public class IrrigationServiceImpl implements IrrigationService {
     public void startIrrigation(Long cropFieldId) {
         CropField cropField = cropFieldRepository.findById(cropFieldId).orElse(null);
         if (cropField != null) {
+            //Temas de pruebas considerar cambiar a findById
             TempDataSensor tempDataSensor = tempDataSensorRepository.findByUserId(cropField.getUser().getId());
             if (tempDataSensor != null) {
                 tempDataSensor.setCropFieldId(cropFieldId);

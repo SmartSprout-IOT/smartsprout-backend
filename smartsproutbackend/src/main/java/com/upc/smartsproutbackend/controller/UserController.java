@@ -59,6 +59,7 @@ public class UserController {
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
+    //PutController
     @Transactional
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@PathVariable(name = "userId") Long userId, @RequestBody User user) {

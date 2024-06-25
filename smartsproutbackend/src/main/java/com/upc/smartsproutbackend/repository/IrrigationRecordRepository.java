@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
-@Repository
+
 public interface IrrigationRecordRepository extends JpaRepository<IrrigationRecord, Long> {
     List<IrrigationRecord> findByCropFieldId(Long cropFieldId);
     List<IrrigationRecord> findByIrrigationDateBetweenAndCropFieldId(LocalDate startDate, LocalDate endDate, Long cropFieldId);
